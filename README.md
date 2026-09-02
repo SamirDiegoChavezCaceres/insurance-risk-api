@@ -1,0 +1,52 @@
+# insurance-risk-api
+
+Train a health-risk classifier and **serve it over a REST API** - the full loop
+from data to a running prediction endpoint, not just a notebook.
+
+Built on synthetic data (no real or proprietary data), so it runs end to end
+with nothing to download.
+
+## What it shows
+
+- **One sklearn `Pipeline`** carries preprocessing (scaling + one-hot encoding)
+  together with the classifier, so the exact transforms fit at training time are
+  reused at serving time - no train/serve skew.
+- **A Flask API** (`/predict`, `/health`) with input validation: a missing
+  feature is a clean `400`, not a `500` from inside sklearn.
+- **Testable serving**: the model is injected into `create_app`, so the API is
+  tested with Flask's test client, no live server needed.
+
+## Run it
+
+```bash
+pip install -e .
+python scripts/serve.py
+```
+
+```bash
+curl -s localhost:5000/health
+curl -s -X POST localhost:5000/predict -H 'content-type: application/json' \
+  -d '{"age":64,"bmi":31.2,"num_chronic":2,"exercise_days":1,"sex":"M","region":"south","smoker":"yes"}'
+# {"risk_probability": 0.83, "risk_label": 1}
+```
+
+Train and persist a model separately:
+
+```bash
+python scripts/train.py model.joblib
+```
+
+## Tests
+
+```bash
+pip install -e ".[dev]"
+pytest
+```
+
+Covers that the model learns the synthetic signal (ROC-AUC above a baseline),
+and the API contract: a valid request returns a probability, a missing field is
+a 400, and `/health` is live.
+
+## License
+
+MIT.
