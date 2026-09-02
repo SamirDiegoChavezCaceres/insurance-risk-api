@@ -3,8 +3,7 @@
 Train a health-risk classifier and **serve it over a REST API** - the full loop
 from data to a running prediction endpoint, not just a notebook.
 
-Built on synthetic data (no real or proprietary data), so it runs end to end
-with nothing to download.
+Built on synthetic data, so it runs end to end with nothing to download.
 
 ## What it shows
 
