@@ -57,6 +57,14 @@ Covers that the model learns the synthetic signal (ROC-AUC above a baseline),
 and the API contract: a valid request returns a probability, a missing field is
 a 400, and `/health` is live.
 
+## Limitations and next steps
+
+- Trained on synthetic data, so the metrics show the pipeline works, not
+  real-world accuracy.
+- The API has no auth, rate limiting, or model versioning yet.
+- Next: add request logging, a model registry, and schema validation on the
+  input (e.g. pydantic).
+
 ## License
 
 MIT.
