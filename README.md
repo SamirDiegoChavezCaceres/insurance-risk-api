@@ -1,5 +1,7 @@
 # insurance-risk-api
 
+[![CI](https://github.com/SamirDiegoChavezCaceres/insurance-risk-api/actions/workflows/ci.yml/badge.svg)](https://github.com/SamirDiegoChavezCaceres/insurance-risk-api/actions/workflows/ci.yml) ![Python](https://img.shields.io/badge/python-3.10%2B-blue.svg) ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
 Train a health-risk classifier and **serve it over a REST API** - the full loop
 from data to a running prediction endpoint, not just a notebook.
 
@@ -33,6 +35,15 @@ Train and persist a model separately:
 
 ```bash
 python scripts/train.py model.joblib
+```
+
+## Results
+
+On the synthetic data the model reaches **ROC-AUC ~0.77** on a held-out split
+(fixed seed, so the number is reproducible). Reproduce:
+
+```bash
+python scripts/train.py
 ```
 
 ## Tests
