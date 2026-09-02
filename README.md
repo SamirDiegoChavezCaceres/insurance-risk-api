@@ -7,6 +7,12 @@ from data to a running prediction endpoint, not just a notebook.
 
 Built on synthetic data, so it runs end to end with nothing to download.
 
+## Demo
+
+![demo](assets/demo.gif)
+
+Generate it with [VHS](https://github.com/charmbracelet/vhs): `vhs demo.tape`.
+
 ## What it shows
 
 - **One sklearn `Pipeline`** carries preprocessing (scaling + one-hot encoding)
