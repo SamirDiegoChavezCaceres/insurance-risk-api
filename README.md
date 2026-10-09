@@ -11,6 +11,12 @@ Built on synthetic data, so it runs end to end with nothing to download.
 
 ![demo](assets/demo.gif)
 
+The demo (`scripts/demo.py`) uses synthetic data and the in-process Flask test
+client, so no server or port is needed. It (1) trains the sklearn pipeline on
+4000 generated rows and prints the metrics, (2) calls `/health`, (3) scores one
+high-risk and one low-risk profile over the REST endpoint, and (4) posts a
+request with a missing field to show it returns a clean `400`, not a `500`.
+
 Generate it with [VHS](https://github.com/charmbracelet/vhs): `vhs demo.tape`.
 
 ## What it shows
